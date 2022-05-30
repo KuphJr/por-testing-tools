@@ -1,0 +1,8 @@
+Trying with 1 addresses
+Elapsed time in ms: 1156
+Trying with 10 addresses
+Elapsed time in ms: 1246
+Trying with 100 addresses
+Elapsed time in ms: 1042
+Trying with 1000 addresses
+Elapsed time in ms: 2405

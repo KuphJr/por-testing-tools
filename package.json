@@ -1,0 +1,21 @@
+{
+  "name": "por-tester",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "ts-node ./src/index.ts",
+    "getAddresses": "ts-node ./src/get-eth-addresses.ts",
+    "testEth": "ts-node ./src/eth-test.ts",
+    "test": "ts-node ./src/test.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/node": "^17.0.34",
+    "axios": "^0.27.2",
+    "ts-node": "^10.8.0",
+    "web3": "^1.7.3"
+  }
+}
