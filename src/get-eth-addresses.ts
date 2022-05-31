@@ -1,7 +1,7 @@
 import fs from 'fs'
 import Web3 from 'web3'
 
-const web3 = new Web3(new Web3.providers.HttpProvider(''))
+const web3 = new Web3(new Web3.providers.HttpProvider('https://mainnet.infura.io/v3/84222a368ecd4d6ea57c8a0b7add0803'))
 
 let blockNum = 14870349
 

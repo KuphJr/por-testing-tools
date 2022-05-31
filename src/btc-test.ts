@@ -1,6 +1,6 @@
 import axios from 'axios';
 import type { AxiosResponse } from 'axios'
-import ethAddresses from './valid-eth-addresses.json'
+import btcAddresses from './sortedBtcAddresses.json'
 import process from 'process'
 import fs from 'fs'
 
@@ -11,7 +11,7 @@ const testAdapterRequests = async () => {
   const URL = process.env.URL || 'http://localhost:8081/'
   const DELAY = process.env.DELAY ? parseInt(process.env.DELAY) : 5000
 
-  const round = [1, 10, 100, 1000, 2500, 5000, 7500, 10000]
+  const round = [1, 10, 100, 500, 1000]
   let lastUsedIndex = 0
   let i = 0
   for (const numberOfAddressesToQuery of round) {
@@ -19,13 +19,16 @@ const testAdapterRequests = async () => {
     const requestBody = {
       "id": "1",
       "data": {
-        "indexer": "eth_balance",
+        "indexer": "por_indexer",
         "protocol": "list",
-        "addresses": ethAddresses.slice(lastUsedIndex, lastUsedIndex + numberOfAddressesToQuery),
+        "addresses": btcAddresses
+          .sort(() => Math.random() - 0.5)
+          .map(({ address }) => address)
+          .slice(lastUsedIndex, lastUsedIndex + numberOfAddressesToQuery)
+          .map(address => {return { address, network: 'bitcoin', chainId: 'mainnet'}}),
         "confirmations": 5
       }
     }
-    console.log(ethAddresses.slice(lastUsedIndex, lastUsedIndex + numberOfAddressesToQuery))
     lastUsedIndex += numberOfAddressesToQuery
     try {
       console.log(`Trying with ${numberOfAddressesToQuery} addresses\n`)
